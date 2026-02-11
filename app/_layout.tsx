@@ -1,10 +1,11 @@
+import { exampleTabs } from "@/constants/tabs";
+import { tabsOptions } from "@/constants/tabs/options";
 import type { RootStackParamListType } from "@/types/navigation";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import "react-native-reanimated";
-import DetailsScreen from "./screens/details";
-import HomeScreen from "./screens/home";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-const Stack = createNativeStackNavigator<RootStackParamListType>();
+const Tab = createBottomTabNavigator<RootStackParamListType>();
 
 // export default function RootLayout() {
 //   const colorScheme = useColorScheme();
@@ -28,9 +29,22 @@ const Stack = createNativeStackNavigator<RootStackParamListType>();
 
 export default function App() {
   return (
-    <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Dettagli" component={DetailsScreen} />
-    </Stack.Navigator>
+    <SafeAreaView style={{ flex: 1 }}>
+      <Tab.Navigator initialRouteName="Home" screenOptions={tabsOptions}>
+        {exampleTabs.map(({ icon, title, name, component }) => (
+          <Tab.Screen
+            key={name}
+            name={name}
+            component={component}
+            options={{
+              title,
+              tabBarIcon: ({ color, size }) => (
+                <Ionicons name={icon} size={size} color={color} />
+              ),
+            }}
+          />
+        ))}
+      </Tab.Navigator>
+    </SafeAreaView>
   );
 }

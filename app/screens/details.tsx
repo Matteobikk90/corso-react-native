@@ -1,10 +1,20 @@
 import type { NavigationPropsType } from "@/types/navigation";
-import { Pressable, Text } from "react-native";
+import { Pressable, Text, View } from "react-native";
 
-export default function DetailsScreen({ navigation }: NavigationPropsType) {
+export default function DetailScreen({ navigation }: NavigationPropsType) {
   return (
-    <Pressable onPress={() => navigation.goBack()}>
-      <Text>{"Vai alla pagina indietro"}</Text>
-    </Pressable>
+    <View>
+      <Text>Dettaglio</Text>
+
+      <Pressable
+        onPress={() =>
+          navigation.navigate("Prodotto", {
+            id: "1",
+            title: "T-Shirt nike",
+          })
+        }>
+        <Text>{"Vai alla pagina Prodotto ===>"}</Text>
+      </Pressable>
+    </View>
   );
 }
