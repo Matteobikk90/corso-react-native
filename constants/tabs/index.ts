@@ -1,6 +1,6 @@
-import DetailScreen from "@/app/screens/details";
 import HomeScreen from "@/app/screens/home";
 import ProductScreen from "@/app/screens/product";
+import { DetailsStackNavigator } from "@/components/details-stack";
 
 export const exampleTabs = [
   {
@@ -13,7 +13,7 @@ export const exampleTabs = [
     name: "Dettagli",
     title: "Dettagli",
     icon: "sparkles",
-    component: DetailScreen,
+    component: DetailsStackNavigator,
   },
   {
     name: "Prodotto",
