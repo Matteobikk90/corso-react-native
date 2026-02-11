@@ -1,24 +1,43 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import "react-native-reanimated";
+import { DetailsScreen } from "./(screens)/Details";
+import { HomeScreen } from "./(screens)/Home";
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export const unstable_settings = {
-  anchor: '(tabs)',
+type RootStackParamListType = {
+  Home: undefined;
+  Details: undefined;
 };
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
+const Stack = createNativeStackNavigator<RootStackParamListType>();
 
+// export default function RootLayout() {
+//   const colorScheme = useColorScheme();
+
+//   return (
+//     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+//       <Stack>
+//         <Stack.Screen name="(tabs)" options={{ headerShown: true }} />
+//         <Stack.Screen
+//           name="modal"
+//           options={{
+//             presentation: "modal",
+//             title: "Modale 10",
+//           }}
+//         />
+//       </Stack>
+//       <StatusBar style="auto" />
+//     </ThemeProvider>
+//   );
+// }
+
+export default function App() {
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
