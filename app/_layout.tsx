@@ -1,13 +1,8 @@
-import { NavigationContainer } from "@react-navigation/native";
+import type { RootStackParamListType } from "@/types/navigation";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import "react-native-reanimated";
-import { DetailsScreen } from "./(screens)/Details";
-import { HomeScreen } from "./(screens)/Home";
-
-type RootStackParamListType = {
-  Home: undefined;
-  Details: undefined;
-};
+import DetailsScreen from "./screens/details";
+import HomeScreen from "./screens/home";
 
 const Stack = createNativeStackNavigator<RootStackParamListType>();
 
@@ -33,11 +28,9 @@ const Stack = createNativeStackNavigator<RootStackParamListType>();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator initialRouteName="Home">
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Dettagli" component={DetailsScreen} />
+    </Stack.Navigator>
   );
 }
