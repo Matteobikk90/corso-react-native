@@ -1,9 +1,12 @@
-import type { NavigationPropsType } from "@/types/navigation";
+import type { DetailsStackParamList } from "@/types/navigation";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import type { DrawerScreenProps } from "@react-navigation/drawer";
 import { useLayoutEffect } from "react";
 import { Pressable, Text, View } from "react-native";
 
-export default function DetailMain({ navigation }: NavigationPropsType) {
+export default function DetailMain({
+  navigation,
+}: DrawerScreenProps<DetailsStackParamList, "DettagliMain">) {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => (

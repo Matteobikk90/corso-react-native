@@ -1,9 +1,12 @@
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import type { NavigatorScreenParams } from "@react-navigation/native";
 
-export type RootStackParamListType = {
+export type DetailsStackParamList = {
+  DettagliMain: undefined;
+  DettagliSecond: undefined; // or { from?: string; } | undefined
+};
+
+export type DrawerParamList = {
   Home: undefined;
-  Dettagli: undefined;
+  Dettagli: NavigatorScreenParams<DetailsStackParamList>;
   Prodotto: undefined;
 };
-export type NavigationPropsType =
-  NativeStackScreenProps<RootStackParamListType>;

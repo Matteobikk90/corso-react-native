@@ -1,9 +1,12 @@
-import type { NavigationPropsType } from "@/types/navigation";
+import type { DrawerParamList } from "@/types/navigation";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import type { DrawerScreenProps } from "@react-navigation/drawer";
 import { useLayoutEffect } from "react";
 import { Pressable, Text, View } from "react-native";
 
-export default function HomeScreen({ navigation }: NavigationPropsType) {
+export default function HomeScreen({
+  navigation,
+}: DrawerScreenProps<DrawerParamList, "Home">) {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
@@ -27,7 +30,10 @@ export default function HomeScreen({ navigation }: NavigationPropsType) {
         <Text>Toggle drawer</Text>
       </Pressable>
 
-      <Pressable onPress={() => navigation.navigate("Dettagli")}>
+      <Pressable
+        onPress={() =>
+          navigation.navigate("Dettagli", { screen: "DettagliMain" })
+        }>
         <Text>{"Vai alla pagina Dettaglio ===>"}</Text>
       </Pressable>
     </View>

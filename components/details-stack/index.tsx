@@ -1,9 +1,10 @@
 import DetailMain from "@/app/screens/details/index";
 import DetailsSecond from "@/app/screens/details/second";
+import type { DetailsStackParamList } from "@/types/navigation";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export function DetailsStackNavigator() {
-  const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator<DetailsStackParamList>();
 
   return (
     <Stack.Navigator>

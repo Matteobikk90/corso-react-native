@@ -1,24 +1,34 @@
+import type { DrawerParamList } from "@/types/navigation";
+import type { ComponentType } from "react";
+
 import HomeScreen from "@/app/screens/home";
 import ProductScreen from "@/app/screens/product";
 import { DetailsStackNavigator } from "@/components/details-stack";
 
+type DrawerRouteName = keyof DrawerParamList;
+
 export const exampleTabs = [
   {
-    name: "Home",
+    name: "Home" as const,
     title: "Home",
-    icon: "home",
-    component: HomeScreen,
+    icon: "home" as const,
+    component: HomeScreen as ComponentType,
   },
   {
-    name: "Dettagli",
+    name: "Dettagli" as const,
     title: "Dettagli",
-    icon: "sparkles",
-    component: DetailsStackNavigator,
+    icon: "sparkles" as const,
+    component: DetailsStackNavigator as ComponentType,
   },
   {
-    name: "Prodotto",
+    name: "Prodotto" as const,
     title: "Prodotto",
-    icon: "image",
-    component: ProductScreen,
+    icon: "image" as const,
+    component: ProductScreen as ComponentType,
   },
-] as const;
+] satisfies readonly {
+  name: DrawerRouteName;
+  title: string;
+  icon: string;
+  component: ComponentType;
+}[];

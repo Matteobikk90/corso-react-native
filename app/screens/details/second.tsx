@@ -1,10 +1,10 @@
-import type { NavigationPropsType } from "@/types/navigation";
+import type { DetailsStackParamList } from "@/types/navigation";
+import type { DrawerScreenProps } from "@react-navigation/drawer";
 import { Pressable, Text, View } from "react-native";
 
 export default function DetailsSecond({
   navigation,
-  route,
-}: NavigationPropsType) {
+}: DrawerScreenProps<DetailsStackParamList, "DettagliSecond">) {
   return (
     <View>
       <Text style={{ fontSize: 40 }}>Dettagli - Second</Text>

@@ -12,7 +12,7 @@ const Drawer = createDrawerNavigator();
 //   const colorScheme = useColorScheme();
 
 //   return (
-//     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+//     <ThemeProvider value={colorScheme === "dark" ? DarkThz`weme : DefaultTheme}>
 //       <Stack>
 //         <Stack.Screen name="(tabs)" options={{ headerShown: true }} />
 //         <Stack.Screen
