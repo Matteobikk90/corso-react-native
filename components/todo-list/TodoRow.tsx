@@ -1,6 +1,6 @@
+import type { ToDoType } from "@/reducers/types";
 import { memo } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import type { ToDoType } from ".";
 
 export function TodoRow({
   todo,
