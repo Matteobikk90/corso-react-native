@@ -1,15 +1,17 @@
-import { useTodoContext } from "@/contexts";
+import { useAppDispatch, useAppSelector } from "@/storeR/hooks";
+import { addTodo, setInputText } from "@/storeR/slices/todos";
 import { Pressable, Text } from "react-native";
 
 export function AddTodo() {
-  const { addTodo, inputText, setInputText } = useTodoContext();
+  const dispatch = useAppDispatch();
+  const { inputText } = useAppSelector((state) => state.todoSliceReducer);
 
   const handleAddTodo = () => {
     const trimmedText = inputText.trim();
     if (!trimmedText) return;
 
-    addTodo(trimmedText);
-    setInputText("");
+    dispatch(addTodo({ title: trimmedText }));
+    dispatch(setInputText(""));
   };
 
   return (

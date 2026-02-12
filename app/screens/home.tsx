@@ -1,5 +1,4 @@
 import { ToDo } from "@/components/todo-list";
-import { ToDoProvider } from "@/contexts";
 import type { DrawerParamList } from "@/types/navigation";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import type { DrawerScreenProps } from "@react-navigation/drawer";
@@ -25,11 +24,10 @@ export default function HomeScreen({
   });
 
   return (
-    <ToDoProvider>
-      <View>
-        <Text style={{ fontSize: 40, marginTop: 40 }}>Homescreen</Text>
+    <View>
+      <Text style={{ fontSize: 40, marginTop: 40 }}>Homescreen</Text>
 
-        {/* <Pressable onPress={() => navigation.toggleDrawer()}>
+      {/* <Pressable onPress={() => navigation.toggleDrawer()}>
         <Text>Toggle drawer</Text>
       </Pressable>
 
@@ -40,8 +38,7 @@ export default function HomeScreen({
         <Text>{"Vai alla pagina Dettaglio ===>"}</Text>
       </Pressable> */}
 
-        <ToDo />
-      </View>
-    </ToDoProvider>
+      <ToDo />
+    </View>
   );
 }

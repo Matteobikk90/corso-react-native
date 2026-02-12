@@ -1,9 +1,9 @@
 import { todoReducer } from "@/reducers";
 import { initialTodoState } from "@/reducers/constants";
-import { createContext, useContext, useReducer, type ReactNode } from "react";
+import { createContext, useReducer, type ReactNode } from "react";
 import type { ToDoContextType } from "./types";
 
-const ToDoContext = createContext<ToDoContextType | null>(null);
+export const ToDoContext = createContext<ToDoContextType | null>(null);
 
 export function ToDoProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(todoReducer, initialTodoState);
@@ -47,12 +47,4 @@ export function ToDoProvider({ children }: { children: ReactNode }) {
       {children}
     </ToDoContext>
   );
-}
-
-export function useTodoContext() {
-  const context = useContext(ToDoContext);
-  if (!context) {
-    throw new Error("useTodoContext must be used within a ToDoProvider");
-  }
-  return context;
 }
