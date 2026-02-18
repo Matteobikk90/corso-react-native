@@ -3,12 +3,7 @@ import type { ToDoType } from "@/reducers/types";
 import { useAppDispatch, useAppSelector } from "@/storeR/hooks";
 import { deleteTodo, setInputText, toggleTodo } from "@/storeR/slices/todos";
 import { useEffect } from "react";
-import {
-  ActivityIndicator,
-  FlatList,
-  TextInput,
-  type ListRenderItem,
-} from "react-native";
+import { ActivityIndicator, FlatList, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TodoRow } from "./TodoRow";
 import { AddTodo } from "./add";
@@ -32,7 +27,7 @@ export function ToDo() {
     dispatch(deleteTodo(id));
   };
 
-  const renderItem = ({ item }: ListRenderItem<ToDoType>) => (
+  const renderItem = ({ item }: { item: ToDoType }) => (
     <TodoRow todo={item} onToggle={handleToggle} onDelete={handleDelete} />
   );
 

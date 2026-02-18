@@ -9,7 +9,10 @@ export function ToDoProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(todoReducer, initialTodoState);
 
   const addTodo = (title: string) => {
-    dispatch({ type: "ADD_TODO", payload: { title } });
+    dispatch({
+      type: "ADD_TODO",
+      payload: { title, id: String(Date.now()), done: false },
+    });
   };
 
   const toggleTodo = (id: string) => {
