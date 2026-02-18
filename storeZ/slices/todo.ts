@@ -78,7 +78,7 @@ export const createSliceTodo: StateCreator<ToDoStateSliceType> = (
     set({ loading: true });
 
     try {
-      const updatedTodo = await updateTodo(id, !todo.done);
+      const updatedTodo = await updateTodo(id, !todo.done, todo.title);
 
       set((state) => ({
         todos: state.todos.map((t) => (t.id === id ? updatedTodo : t)),

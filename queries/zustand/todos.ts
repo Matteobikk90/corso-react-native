@@ -18,13 +18,14 @@ export async function createTodo(title: string) {
   return mappingTodoFromApi(response.data);
 }
 
-export async function updateTodo(id: string, done: boolean) {
+export async function updateTodo(id: string, done: boolean, title: string) {
   const response = await api.put(`/todos/${id}`, {
     id: Number(id),
     completed: done,
     userId: 1,
+    title,
   });
-
+  console.log("api", mappingTodoFromApi(response.data));
   return mappingTodoFromApi(response.data);
 }
 
