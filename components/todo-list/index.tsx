@@ -1,7 +1,13 @@
 import type { ToDoType } from "@/reducers/types";
 import { useStore } from "@/storeZ";
 import { useEffect } from "react";
-import { ActivityIndicator, FlatList, TextInput } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useShallow } from "zustand/react/shallow";
 import { TodoRow } from "./TodoRow";
@@ -14,29 +20,21 @@ export function ToDo() {
     toggleTodo,
     deleteTodo,
     setInputText,
+    error,
     loading,
     todos,
     inputText,
   } = useStore(
-    useShallow(
-      ({
-        getTodos,
-        toggleTodo,
-        deleteTodo,
-        setInputText,
-        loading,
-        todos,
-        inputText,
-      }) => ({
-        getTodos,
-        toggleTodo,
-        deleteTodo,
-        setInputText,
-        loading,
-        todos,
-        inputText,
-      })
-    )
+    useShallow((state) => ({
+      getTodos: state.getTodos,
+      toggleTodo: state.toggleTodo,
+      deleteTodo: state.deleteTodo,
+      setInputText: state.setInputText,
+      loading: state.loading,
+      todos: state.todos,
+      inputText: state.inputText,
+      error: state.error,
+    }))
   );
 
   useEffect(() => {
@@ -58,6 +56,12 @@ export function ToDo() {
   return (
     <SafeAreaView>
       {loading && <ActivityIndicator size="large" color="#0000ff" />}
+
+      {error && (
+        <View>
+          <Text>{error}</Text>
+        </View>
+      )}
 
       <FlatList
         data={todos}

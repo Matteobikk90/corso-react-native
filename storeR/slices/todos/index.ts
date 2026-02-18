@@ -1,5 +1,5 @@
 import { initialState } from "@/constants/initialState";
-import { getTodos } from "@/queries/todos";
+import { getTodos } from "@/queries/redux/todos";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 const todoSliceReducer = createSlice({

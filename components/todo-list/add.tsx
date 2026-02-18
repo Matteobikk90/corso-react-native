@@ -1,5 +1,5 @@
 import { useStore } from "@/storeZ";
-import { Pressable, Text } from "react-native";
+import { Alert, Pressable, Text } from "react-native";
 
 export function AddTodo() {
   const inputText = useStore((state) => state.inputText);
@@ -12,6 +12,8 @@ export function AddTodo() {
 
     addTodo({ title: trimmedText });
     setInputText("");
+
+    Alert.alert("Todo aggiunto con successo");
   };
 
   return (
