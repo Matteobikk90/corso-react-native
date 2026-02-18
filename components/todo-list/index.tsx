@@ -1,30 +1,54 @@
-import { getTodos } from "@/queries/todos";
 import type { ToDoType } from "@/reducers/types";
-import { useAppDispatch, useAppSelector } from "@/storeR/hooks";
-import { deleteTodo, setInputText, toggleTodo } from "@/storeR/slices/todos";
+import { useTodoStore } from "@/storeZ";
 import { useEffect } from "react";
 import { ActivityIndicator, FlatList, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useShallow } from "zustand/react/shallow";
 import { TodoRow } from "./TodoRow";
 import { AddTodo } from "./add";
 import { ClearTodos } from "./clear";
 
 export function ToDo() {
-  const dispatch = useAppDispatch();
-  const { todos, inputText, loading } = useAppSelector(
-    (state) => state.todoSliceReducer
+  const {
+    getTodos,
+    toggleTodo,
+    deleteTodo,
+    setInputText,
+    loading,
+    todos,
+    inputText,
+  } = useTodoStore(
+    useShallow(
+      ({
+        getTodos,
+        toggleTodo,
+        deleteTodo,
+        setInputText,
+        loading,
+        todos,
+        inputText,
+      }) => ({
+        getTodos,
+        toggleTodo,
+        deleteTodo,
+        setInputText,
+        loading,
+        todos,
+        inputText,
+      })
+    )
   );
 
   useEffect(() => {
-    dispatch(getTodos());
-  }, [dispatch]);
+    getTodos();
+  }, [getTodos]);
 
   const handleToggle = (id: string) => {
-    dispatch(toggleTodo(id));
+    toggleTodo(id);
   };
 
   const handleDelete = (id: string) => {
-    dispatch(deleteTodo(id));
+    deleteTodo(id);
   };
 
   const renderItem = ({ item }: { item: ToDoType }) => (
@@ -44,7 +68,7 @@ export function ToDo() {
 
       <TextInput
         value={inputText}
-        onChangeText={(text) => dispatch(setInputText(text))}
+        onChangeText={(text) => setInputText(text)}
         placeholder="Scrivi un task…"
         style={{ borderWidth: 1, padding: 10, borderRadius: 10 }}
       />

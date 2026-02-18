@@ -1,13 +1,12 @@
-import { useAppDispatch } from "@/storeR/hooks";
-import { clearTodos } from "@/storeR/slices/todos";
+import { useTodoStore } from "@/storeZ";
 import { Pressable, Text } from "react-native";
 
 export function ClearTodos() {
-  const dispatch = useAppDispatch();
+  const clearTodos = useTodoStore((state) => state.clearTodos);
 
   return (
     <Pressable
-      onPress={() => dispatch(clearTodos())}
+      onPress={() => clearTodos()}
       style={{
         marginTop: 20,
         backgroundColor: "yellow",

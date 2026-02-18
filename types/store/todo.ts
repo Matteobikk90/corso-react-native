@@ -5,4 +5,10 @@ export type ToDoState = {
   inputText: string;
   loading: boolean;
   error: string | null;
+  getTodos: () => void;
+  setInputText: (text: string) => void;
+  toggleTodo: (id: string) => void;
+  addTodo: ({ title }: { title: string }) => void;
+  deleteTodo: (id: string) => void;
+  clearTodos: () => void;
 };
