@@ -1,5 +1,5 @@
 import type { ToDoType } from "@/reducers/types";
-import { useTodoStore } from "@/storeZ";
+import { useStore } from "@/storeZ";
 import { useEffect } from "react";
 import { ActivityIndicator, FlatList, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -17,7 +17,7 @@ export function ToDo() {
     loading,
     todos,
     inputText,
-  } = useTodoStore(
+  } = useStore(
     useShallow(
       ({
         getTodos,

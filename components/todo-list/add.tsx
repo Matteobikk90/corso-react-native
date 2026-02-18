@@ -1,10 +1,10 @@
-import { useTodoStore } from "@/storeZ";
+import { useStore } from "@/storeZ";
 import { Pressable, Text } from "react-native";
 
 export function AddTodo() {
-  const inputText = useTodoStore((state) => state.inputText);
-  const addTodo = useTodoStore((state) => state.addTodo);
-  const setInputText = useTodoStore((state) => state.setInputText);
+  const inputText = useStore((state) => state.inputText);
+  const addTodo = useStore((state) => state.addTodo);
+  const setInputText = useStore((state) => state.setInputText);
 
   const handleAddTodo = () => {
     const trimmedText = inputText.trim();

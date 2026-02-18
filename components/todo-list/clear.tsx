@@ -1,8 +1,8 @@
-import { useTodoStore } from "@/storeZ";
+import { useStore } from "@/storeZ";
 import { Pressable, Text } from "react-native";
 
 export function ClearTodos() {
-  const clearTodos = useTodoStore((state) => state.clearTodos);
+  const clearTodos = useStore((state) => state.clearTodos);
 
   return (
     <Pressable

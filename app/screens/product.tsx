@@ -4,7 +4,6 @@ import { Pressable, Text, View } from "react-native";
 
 export default function ProductScreen({
   navigation,
-  route,
 }: DrawerScreenProps<DrawerParamList, "Prodotto">) {
   return (
     <View>
