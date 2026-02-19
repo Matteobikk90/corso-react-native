@@ -1,3 +1,4 @@
+import { LAST_SYNC, TODOD_CACHE_KEY } from "@/constants/storage";
 import {
   createTodo,
   fetchTodos,
@@ -6,6 +7,7 @@ import {
 } from "@/queries/zustand/todos";
 import { initialTodoStateZustand } from "@/reducers/constants";
 import type { ToDoState as ToDoStateSliceType } from "@/types/store/todo";
+import { clearStorage, storageGet, storageSet } from "@/utils/storage";
 import type { StateCreator } from "zustand";
 
 export const createSliceTodo: StateCreator<ToDoStateSliceType> = (
@@ -40,16 +42,52 @@ export const createSliceTodo: StateCreator<ToDoStateSliceType> = (
   //   })),
   clearTodos: () => set({ todos: [] }),
   getTodos: async () => {
+    const state = get();
+
+    if (state.todos.length > 0) {
+      console.log("Using cached todos");
+      return;
+    }
+
     set({ loading: true, error: null });
 
     try {
       const todos = await fetchTodos();
-      set({ todos });
+      const now = new Date().toISOString();
+
+      set({ todos, lastSync: now });
+
+      await storageSet(TODOD_CACHE_KEY, todos);
+      await storageSet(LAST_SYNC, now);
+
+      console.log("Saved to cache", todos.length);
     } catch (error) {
       const message = error instanceof Error ? error.message : "Errore";
       return message;
     } finally {
       set({ loading: false });
+    }
+  },
+
+  loadFromCache: async () => {
+    try {
+      const cachedTodos = await storageGet(TODOD_CACHE_KEY);
+      const lastSync = await storageGet(LAST_SYNC);
+
+      if (cachedTodos) {
+        console.log("Loaded from cache", cachedTodos.length);
+        set({ todos: cachedTodos, lastSync });
+      }
+    } catch (error) {
+      console.error("Failed to load cache", error);
+    }
+  },
+
+  clearCache: async () => {
+    try {
+      await clearStorage();
+    } catch (error) {
+      console.error("Failed to clear cache", error);
     }
   },
 

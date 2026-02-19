@@ -11,4 +11,7 @@ export type ToDoState = {
   addTodo: ({ title }: { title: string }) => void;
   deleteTodo: (id: string) => void;
   clearTodos: () => void;
+  loadFromCache: () => void;
+  clearCache: () => void;
+  lastSync: string | null;
 };

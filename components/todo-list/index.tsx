@@ -1,6 +1,6 @@
 import type { ToDoType } from "@/reducers/types";
 import { useStore } from "@/storeZ";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -24,6 +24,7 @@ export function ToDo() {
     loading,
     todos,
     inputText,
+    loadFromCache,
   } = useStore(
     useShallow((state) => ({
       getTodos: state.getTodos,
@@ -34,12 +35,18 @@ export function ToDo() {
       todos: state.todos,
       inputText: state.inputText,
       error: state.error,
+      loadFromCache: state.loadFromCache,
     }))
   );
 
+  const init = useCallback(async () => {
+    await loadFromCache();
+    await getTodos();
+  }, [loadFromCache, getTodos]);
+
   useEffect(() => {
-    getTodos();
-  }, [getTodos]);
+    init();
+  }, [init]);
 
   const handleToggle = (id: string) => {
     toggleTodo(id);

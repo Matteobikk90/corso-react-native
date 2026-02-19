@@ -25,7 +25,6 @@ export async function updateTodo(id: string, done: boolean, title: string) {
     userId: 1,
     title,
   });
-  console.log("api", mappingTodoFromApi(response.data));
   return mappingTodoFromApi(response.data);
 }
 

@@ -27,7 +27,7 @@ export default function HomeScreen({
     <View>
       <Text style={{ fontSize: 40, marginTop: 40 }}>Homescreen</Text>
 
-      {/* <Pressable onPress={() => navigation.toggleDrawer()}>
+      <Pressable onPress={() => navigation.toggleDrawer()}>
         <Text>Toggle drawer</Text>
       </Pressable>
 
@@ -36,7 +36,7 @@ export default function HomeScreen({
           navigation.navigate("Dettagli", { screen: "DettagliMain" })
         }>
         <Text>{"Vai alla pagina Dettaglio ===>"}</Text>
-      </Pressable> */}
+      </Pressable>
 
       <ToDo />
     </View>
