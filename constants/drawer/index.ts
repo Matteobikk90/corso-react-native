@@ -4,10 +4,11 @@ import type { ComponentType } from "react";
 import HomeScreen from "@/app/screens/home";
 import ProductScreen from "@/app/screens/product";
 import { DetailsStackNavigator } from "@/components/details-stack";
+import { NativeModulesTabNavigator } from "@/components/native-modules-navigator";
 
 type DrawerRouteName = keyof DrawerParamList;
 
-export const exampleTabs = [
+export const drawersList = [
   {
     name: "Home" as const,
     title: "Home",
@@ -25,6 +26,12 @@ export const exampleTabs = [
     title: "Prodotto",
     icon: "image" as const,
     component: ProductScreen as ComponentType,
+  },
+  {
+    name: "ModuliNativi" as const,
+    title: "ModuliNativi",
+    icon: "hardware-chip" as const,
+    component: NativeModulesTabNavigator as ComponentType,
   },
 ] satisfies readonly {
   name: DrawerRouteName;

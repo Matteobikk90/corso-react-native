@@ -1,5 +1,5 @@
-import { exampleTabs } from "@/constants/tabs";
-import { tabsOptions } from "@/constants/tabs/options";
+import { drawersList } from "@/constants/drawer";
+import { tabsOptions } from "@/constants/drawer/options";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -32,7 +32,7 @@ export default function App() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Drawer.Navigator initialRouteName="Home" screenOptions={tabsOptions}>
-        {exampleTabs.map(({ icon, title, name, component }) => (
+        {drawersList.map(({ icon, title, name, component }) => (
           <Drawer.Screen
             key={name}
             name={name}
