@@ -1,17 +1,18 @@
 import { Preview } from "@/components/camera/preview";
 import { pickFromLibrary, takePhotoFromCamera } from "@/utils/camera";
+import * as ImagePicker from "expo-image-picker";
 import { useState } from "react";
 import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
 export function CameraComponent() {
-  const [uri, setUri] = useState<string | null>(null);
+  const [asset, setAseet] = useState<ImagePicker.ImagePickerAsset | null>(null);
 
   const handleClick = async (isFromCamera: boolean) => {
     if (isFromCamera) {
-      setUri(await takePhotoFromCamera());
+      setAseet(await takePhotoFromCamera());
     } else {
-      setUri(await pickFromLibrary());
+      setAseet(await pickFromLibrary());
     }
   };
 
@@ -39,7 +40,7 @@ export function CameraComponent() {
           </Pressable>
         </View>
 
-        {uri ? <Preview uri={uri} /> : <Text>Nessuna foto</Text>}
+        {asset ? <Preview asset={asset} /> : <Text>Nessuna foto</Text>}
       </View>
     </ScrollView>
   );

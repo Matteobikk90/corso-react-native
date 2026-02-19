@@ -20,7 +20,7 @@ export async function pickFromLibrary() {
 
   if (result.canceled) return null;
 
-  return result.assets[0].uri;
+  return result.assets[0];
 }
 
 export async function takePhotoFromCamera() {
@@ -40,5 +40,5 @@ export async function takePhotoFromCamera() {
 
   if (result.canceled) return null;
 
-  return result.assets[0].uri;
+  return result.assets[0];
 }

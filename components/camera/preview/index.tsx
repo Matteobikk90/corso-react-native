@@ -1,13 +1,21 @@
-import { Image } from "react-native";
+// import { Image } from "react-native";
 
-export function Preview({ uri }: { uri: string | null }) {
-  if (!uri) return null;
+import { Image, Text, View } from "react-native";
+
+type AssetType = {
+  asset: {
+    uri: string;
+    fileName?: string | null | undefined;
+  };
+};
+
+export const Preview = ({ asset }: AssetType) => {
+  if (!asset) return null;
 
   return (
-    <Image
-      source={{ uri }}
-      style={{ width: 220, height: 220, borderRadius: 16 }}
-      resizeMode="cover"
-    />
+    <View>
+      <Text>{asset.fileName}</Text>
+      <Image source={{ uri: asset.uri }} width={200} height={200} />
+    </View>
   );
-}
+};
