@@ -6,14 +6,13 @@ import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
 export function CameraComponent() {
-  const [asset, setAseet] = useState<ImagePicker.ImagePickerAsset | null>(null);
+  const [asset, setAsset] = useState<ImagePicker.ImagePickerAsset | null>(null);
 
   const handleClick = async (isFromCamera: boolean) => {
-    if (isFromCamera) {
-      setAseet(await takePhotoFromCamera());
-    } else {
-      setAseet(await pickFromLibrary());
-    }
+    const asset = isFromCamera
+      ? await takePhotoFromCamera()
+      : await pickFromLibrary();
+    setAsset(asset);
   };
 
   return (
