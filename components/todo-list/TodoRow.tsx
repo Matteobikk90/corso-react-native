@@ -1,4 +1,5 @@
 import type { ToDoType } from "@/reducers/types";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { memo } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
@@ -12,38 +13,63 @@ export function TodoRow({
   onDelete: (id: string) => void;
 }) {
   return (
-    <View style={styles.taskContainer}>
-      <Pressable onPress={() => onToggle(todo.id)}>
-        <Text style={todo.done && styles.todo}>{todo.title}</Text>
+    <View style={styles.container}>
+      <Pressable
+        onPress={() => onToggle(todo.id)}
+        style={({ pressed }) => [
+          styles.titleContainer,
+          pressed && styles.pressed,
+        ]}>
+        <Text style={[styles.title, todo.done && styles.done]}>
+          {todo.title}
+        </Text>
       </Pressable>
 
-      <Pressable onPress={() => onDelete(todo.id)}>
-        <Text
-          style={{
-            margin: "auto",
-            padding: 5,
-            backgroundColor: "red",
-            width: "auto",
-            color: "black",
-            borderRadius: 20,
-          }}>
-          RIMUOVI TODO - {todo.title}
-        </Text>
+      <Pressable
+        onPress={() => onDelete(todo.id)}
+        style={({ pressed }) => [
+          styles.deleteButton,
+          pressed && styles.pressed,
+        ]}>
+        <Ionicons name="trash" size={18} color="#DC2626" />
       </Pressable>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  taskContainer: {
+  container: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 40,
-    marginBottom: 40,
+    justifyContent: "space-between",
+    paddingVertical: 14,
+    borderBottomWidth: 1,
+    borderBottomColor: "#E2E8F0",
   },
-  todo: {
+
+  titleContainer: {
+    flex: 1,
+  },
+
+  title: {
+    fontSize: 16,
+    color: "#0F172A",
+  },
+
+  done: {
     textDecorationLine: "line-through",
     opacity: 0.5,
+  },
+
+  deleteButton: {
+    padding: 8,
+    borderRadius: 50,
+    backgroundColor: "#FEE2E2",
+  },
+
+  pressed: {
+    opacity: 0.6,
+    transform: [{ scale: 0.95 }],
   },
 });
 

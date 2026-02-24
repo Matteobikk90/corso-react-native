@@ -1,11 +1,9 @@
-// import { Image } from "react-native";
-
-import { Image, Text, View } from "react-native";
+import { Image, Platform, StyleSheet, Text, View } from "react-native";
 
 type AssetType = {
   asset: {
     uri: string;
-    fileName?: string | null | undefined;
+    fileName?: string | null;
   };
 };
 
@@ -13,9 +11,48 @@ export const Preview = ({ asset }: AssetType) => {
   if (!asset) return null;
 
   return (
-    <View>
-      <Text>{asset.fileName}</Text>
-      <Image source={{ uri: asset.uri }} width={200} height={200} />
+    <View style={styles.card}>
+      <Image
+        source={{ uri: asset.uri }}
+        style={styles.image}
+        resizeMode="cover"
+      />
+
+      {asset.fileName && <Text style={styles.fileName}>{asset.fileName}</Text>}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  card: {
+    marginTop: 20,
+    borderRadius: 16,
+    backgroundColor: "#FFFFFF",
+    padding: 16,
+    gap: 12,
+
+    ...Platform.select({
+      ios: {
+        shadowColor: "#000",
+        shadowOpacity: 0.12,
+        shadowRadius: 10,
+        shadowOffset: { width: 0, height: 6 },
+      },
+      android: {
+        elevation: 5,
+      },
+    }),
+  },
+
+  image: {
+    width: "100%",
+    height: 240,
+    borderRadius: 14,
+  },
+
+  fileName: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#475569",
+  },
+});

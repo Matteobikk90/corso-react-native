@@ -1,3 +1,4 @@
+import type Ionicons from "@expo/vector-icons/Ionicons";
 import type { NavigatorScreenParams } from "@react-navigation/native";
 import type { ComponentType } from "react";
 
@@ -24,6 +25,6 @@ export type NativeModulesTabParamList = {
 export type TabConfig = {
   name: keyof NativeModulesTabParamList;
   title: string;
-  icon: string;
+  icon: keyof typeof Ionicons.glyphMap;
   component: ComponentType;
 };
