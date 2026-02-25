@@ -35,4 +35,6 @@ export const initialModulesStateZustand: NativeModules = {
   status: undefined,
   setStatus: () => {},
   setAsset: () => {},
+  coords: null,
+  setCoords: () => {},
 };

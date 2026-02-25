@@ -4,15 +4,15 @@ import type { TabConfig } from "@/types/navigation";
 
 export const tabs: TabConfig[] = [
   {
-    name: "Camera",
-    title: "Camera",
-    icon: "camera",
-    component: Camera,
-  },
-  {
     name: "Geolocation",
     title: "Geolocation",
     icon: "location",
     component: Geolocation,
+  },
+  {
+    name: "Camera",
+    title: "Camera",
+    icon: "camera",
+    component: Camera,
   },
 ];

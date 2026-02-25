@@ -14,7 +14,6 @@ export function PermissionBox({
   request,
   warning,
 }: PermissionsBoxType) {
-  console.log(statusText);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
