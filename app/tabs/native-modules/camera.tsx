@@ -1,7 +1,6 @@
 import { Preview } from "@/components/camera/preview";
+import { useStore } from "@/storeZ";
 import { pickFromLibrary, takePhotoFromCamera } from "@/utils/camera";
-import * as ImagePicker from "expo-image-picker";
-import { useState } from "react";
 import {
   Linking,
   Platform,
@@ -11,16 +10,22 @@ import {
   View,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import { useShallow } from "zustand/react/shallow";
 
 export function CameraComponent() {
-  const [asset, setAsset] = useState<ImagePicker.ImagePickerAsset | null>(null);
+  const { asset, setAsset } = useStore(
+    useShallow(({ asset, setAsset }) => ({
+      asset,
+      setAsset,
+    }))
+  );
 
   const handleClick = async (isFromCamera: boolean) => {
     const result = isFromCamera
       ? await takePhotoFromCamera()
       : await pickFromLibrary();
 
-    setAsset(result);
+    setAsset({ asset: result! });
   };
 
   return (

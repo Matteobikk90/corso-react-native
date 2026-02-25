@@ -1,4 +1,5 @@
 import type { ToDoState } from "@/reducers/types";
+import type { NativeModules } from "@/types/store/modules";
 import type { ToDoState as ToDoStateZustand } from "@/types/store/todo";
 
 export const initialTodoState: ToDoState = {
@@ -27,4 +28,9 @@ export const initialTodoStateZustand: ToDoStateZustand = {
   inputText: "",
   error: null,
   loading: false,
+};
+
+export const initialModulesStateZustand: NativeModules = {
+  asset: null,
+  setAsset: () => {},
 };

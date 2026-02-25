@@ -1,6 +1,6 @@
 import { Image, Platform, StyleSheet, Text, View } from "react-native";
 
-type AssetType = {
+export type AssetType = {
   asset: {
     uri: string;
     fileName?: string | null;
