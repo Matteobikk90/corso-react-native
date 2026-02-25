@@ -23,10 +23,8 @@ export async function pickFromLibrary() {
   return result.assets[0];
 }
 
-export async function takePhotoFromCamera() {
-  const perm = await ImagePicker.requestCameraPermissionsAsync();
-
-  if (!perm.granted) {
+export async function takePhotoFromCamera(granted: boolean) {
+  if (!granted) {
     Alert.alert(
       "Permesso negato",
       "Abilità l'accesso alla fotocamera nelle impostazioni"

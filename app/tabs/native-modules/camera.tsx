@@ -1,28 +1,30 @@
 import { Preview } from "@/components/camera/preview";
+import { PermissionBox } from "@/components/permission-box";
 import { useStore } from "@/storeZ";
 import { pickFromLibrary, takePhotoFromCamera } from "@/utils/camera";
-import {
-  Linking,
-  Platform,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import * as ImagePicker from "expo-image-picker";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { useShallow } from "zustand/react/shallow";
 
-export function CameraComponent() {
-  const { asset, setAsset } = useStore(
-    useShallow(({ asset, setAsset }) => ({
+export function Camera() {
+  const { asset, setAsset, status, setStatus } = useStore(
+    useShallow(({ asset, setAsset, status, setStatus }) => ({
       asset,
       setAsset,
+      status,
+      setStatus,
     }))
   );
 
+  const requestPermissions = async (isFromCamera: boolean) =>
+    isFromCamera
+      ? await ImagePicker.requestCameraPermissionsAsync()
+      : await ImagePicker.requestMediaLibraryPermissionsAsync();
+
   const handleClick = async (isFromCamera: boolean) => {
     const result = isFromCamera
-      ? await takePhotoFromCamera()
+      ? await takePhotoFromCamera(status === "granted")
       : await pickFromLibrary();
 
     setAsset({ asset: result! });
@@ -34,15 +36,19 @@ export function CameraComponent() {
         <Text style={styles.title}>Camera e Galleria</Text>
 
         {/* Permissions Button */}
-        <Pressable
-          onPress={Linking.openSettings}
-          style={({ pressed }) => [
-            styles.button,
-            styles.outline,
-            pressed && styles.pressed,
-          ]}>
-          <Text style={[styles.buttonText, styles.outlineText]}>Permessi</Text>
-        </Pressable>
+        <PermissionBox
+          title="Camera e Galleria"
+          statusText={status}
+          request={async () => {
+            const res = await ImagePicker.requestCameraPermissionsAsync();
+            setStatus(res.status);
+          }}
+          warning={
+            status === "denied"
+              ? "Permesso negato: apri impostazioni"
+              : undefined
+          }
+        />
 
         <View style={styles.row}>
           {/* Camera */}

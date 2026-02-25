@@ -32,5 +32,7 @@ export const initialTodoStateZustand: ToDoStateZustand = {
 
 export const initialModulesStateZustand: NativeModules = {
   asset: null,
+  status: undefined,
+  setStatus: () => {},
   setAsset: () => {},
 };

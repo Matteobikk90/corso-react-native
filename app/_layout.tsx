@@ -1,5 +1,5 @@
 import { drawersList } from "@/constants/drawer";
-import { tabsOptions } from "@/constants/drawer/options";
+import { drawerOptions } from "@/constants/drawer/options";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -31,7 +31,7 @@ const Drawer = createDrawerNavigator();
 export default function App() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <Drawer.Navigator initialRouteName="Home" screenOptions={tabsOptions}>
+      <Drawer.Navigator initialRouteName="Home" screenOptions={drawerOptions}>
         {drawersList.map(({ icon, title, name, component }) => (
           <Drawer.Screen
             key={name}

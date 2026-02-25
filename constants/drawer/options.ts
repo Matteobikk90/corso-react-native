@@ -1,6 +1,6 @@
 import { Easing } from "react-native-reanimated";
 
-export const tabsOptions = {
+export const drawerOptions = {
   headerShown: false,
   tabBarActiveTintColor: "red",
   tabBarInactiveTintColor: "blue",

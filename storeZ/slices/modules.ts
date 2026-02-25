@@ -8,4 +8,5 @@ export const createSliceModules: StateCreator<NativeModules> = (set, get) => ({
     set({
       asset,
     }),
+  setStatus: (status: string) => set({ status }),
 });
