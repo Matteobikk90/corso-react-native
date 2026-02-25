@@ -1,12 +1,14 @@
 import { PermissionBox } from "@/components/permission-box";
 import { colors } from "@/constants/colors";
 import { useStore } from "@/storeZ";
-import { getOnce } from "@/utils/geolocation";
+import { getOnce, startWatch } from "@/utils/geolocation";
 import * as Location from "expo-location";
+import { useEffect, useRef } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useShallow } from "zustand/react/shallow";
 
 export function Geolocation() {
+  const subRef = useRef<Location.LocationSubscription | null>(null);
   const { status, coords, setCoords, setStatus } = useStore(
     useShallow(({ status, coords, setCoords, setStatus }) => ({
       status,
@@ -23,9 +25,22 @@ export function Geolocation() {
 
   const handleGetOnce = async () => {
     const pos = await getOnce();
-    console.log(pos);
     setCoords(pos);
   };
+
+  const handleStartWatch = async () => {
+    await startWatch(subRef, setCoords);
+  };
+
+  const handleStopWatch = () => {
+    subRef.current?.remove();
+    subRef.current = null;
+    setCoords(null);
+  };
+
+  useEffect(() => {
+    return () => subRef.current?.remove();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -44,20 +59,20 @@ export function Geolocation() {
         <Pressable style={styles.btn} onPress={handleGetOnce}>
           <Text style={styles.btnText}>Get once</Text>
         </Pressable>
-        <Pressable style={styles.btn} onPress={() => {}}>
+        <Pressable style={styles.btn} onPress={handleStartWatch}>
           <Text style={styles.btnText}>Start watch</Text>
         </Pressable>
-        <Pressable style={styles.btn} onPress={() => {}}>
+        <Pressable style={styles.btn} onPress={handleStopWatch}>
           <Text style={styles.btnText}>Stop</Text>
         </Pressable>
       </View>
 
       <View style={styles.card}>
         <Text style={styles.value}>
-          Lat: {coords ? coords.lat.toFixed(2) : "-"}
+          Lat: {coords ? coords.lat.toFixed(6) : "-"}
         </Text>
         <Text style={styles.value}>
-          Lng: {coords ? coords.lng.toFixed(2) : "-"}
+          Lng: {coords ? coords.lng.toFixed(6) : "-"}
         </Text>
       </View>
     </View>
