@@ -61,7 +61,7 @@ export function ToDo() {
   );
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView>
       {loading && <ActivityIndicator size="large" color="#0000ff" />}
 
       {error && (

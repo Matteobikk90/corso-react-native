@@ -4,7 +4,6 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import type { DrawerScreenProps } from "@react-navigation/drawer";
 import { useLayoutEffect } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen({
   navigation,
@@ -26,7 +25,7 @@ export default function HomeScreen({
   }, [navigation]);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.inner}>
         <Text style={styles.title}>Home</Text>
 
@@ -58,7 +57,7 @@ export default function HomeScreen({
           <ToDo />
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
