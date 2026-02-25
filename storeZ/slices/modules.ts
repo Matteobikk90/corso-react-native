@@ -10,4 +10,6 @@ export const createSliceModules: StateCreator<NativeModules> = (set, get) => ({
     }),
   setStatus: (status: string) => set({ status }),
   setCoords: (coords) => set({ coords }),
+  setAccelerometer: (xyz) => set({ accelerometer: xyz }),
+  setGyroscope: (xyz) => set({ gyroscope: xyz }),
 });

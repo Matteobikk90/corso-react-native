@@ -17,6 +17,7 @@ export type DrawerParamList = {
 export type NativeModulesTabParamList = {
   Camera: undefined;
   Geolocation: undefined;
+  Sensors: undefined;
   Notifications: undefined;
   Haptics: undefined;
   Biometrics: undefined;

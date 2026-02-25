@@ -33,8 +33,12 @@ export const initialTodoStateZustand: ToDoStateZustand = {
 export const initialModulesStateZustand: NativeModules = {
   asset: null,
   status: undefined,
+  accelerometer: null,
+  gyroscope: null,
   setStatus: () => {},
   setAsset: () => {},
   coords: null,
   setCoords: () => {},
+  setAccelerometer: () => {},
+  setGyroscope: () => {},
 };
