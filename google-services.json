@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1001420471553",
+    "project_id": "expo-notifications-87e83",
+    "storage_bucket": "expo-notifications-87e83.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001420471553:android:8eceb0a7992ea554b3ef00",
+        "android_client_info": {
+          "package_name": "com.matteobikk90.corsoreactnative"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC85G8W7mDlftibb7irwBcx1ZXtoug4iJc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
