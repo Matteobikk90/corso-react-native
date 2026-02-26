@@ -1,6 +1,6 @@
 import { Camera } from "@/app/tabs/native-modules/camera";
 import { Geolocation } from "@/app/tabs/native-modules/geolocation";
-import { ExpoNotifications } from "@/app/tabs/native-modules/notifications";
+import { NotificationsWrapper } from "@/app/tabs/native-modules/notifications-wrapper";
 import { Reanimated } from "@/app/tabs/native-modules/reanimated";
 import { Sensors } from "@/app/tabs/native-modules/sensors";
 import type { TabConfig } from "@/types/navigation";
@@ -10,7 +10,7 @@ export const tabs: TabConfig[] = [
     name: "Notifications",
     title: "Notifications",
     icon: "notifications",
-    component: ExpoNotifications,
+    component: NotificationsWrapper,
   },
   {
     name: "Reanimated",

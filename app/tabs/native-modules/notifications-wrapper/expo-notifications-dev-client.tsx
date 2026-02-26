@@ -3,11 +3,22 @@ import { TOKEN_KEY } from "@/constants/notifications";
 import { useStore } from "@/storeZ";
 import { registerExpoPushToken } from "@/utils/notifications";
 import { storageGet, storageRemove, storageSet } from "@/utils/storage";
+import * as Notifications from "expo-notifications";
 import { useCallback, useEffect } from "react";
 import { Pressable, Text, View } from "react-native";
 import { useShallow } from "zustand/react/shallow";
 
-export function ExpoNotifications() {
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+    shouldShowBanner: false,
+    shouldShowList: false,
+  }),
+});
+
+export function ExpoNotificationsDevClient() {
   const { status, setStatus, token, setToken } = useStore(
     useShallow((state) => ({
       status: state.status,
