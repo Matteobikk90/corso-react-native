@@ -1,5 +1,12 @@
-import { BouncyBox } from "@/components/bouncy-box";
+import { ProgressBarTap } from "@/components/reanimated/progress-bar-tap";
+import { View } from "react-native";
 
 export function Reanimated() {
-  return <BouncyBox />;
+  return (
+    <View>
+      {/* <FadeSlideCard />
+      <BouncyBox /> */}
+      <ProgressBarTap />
+    </View>
+  );
 }
