@@ -1,5 +1,6 @@
 import type { ToDoState } from "@/reducers/types";
 import type { NativeModules } from "@/types/store/modules";
+import type { NotificationsType } from "@/types/store/notifications";
 import type { ToDoState as ToDoStateZustand } from "@/types/store/todo";
 
 export const initialTodoState: ToDoState = {
@@ -41,4 +42,11 @@ export const initialModulesStateZustand: NativeModules = {
   setCoords: () => {},
   setAccelerometer: () => {},
   setGyroscope: () => {},
+};
+
+export const initialNotificationsStateZustand: NotificationsType = {
+  status: "",
+  setStatus: () => {},
+  token: "",
+  setToken: () => {},
 };

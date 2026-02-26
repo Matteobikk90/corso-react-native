@@ -1,5 +1,5 @@
 import { BouncyBox } from "@/components/reanimated/bouncy-box";
-import { FadeSlideCard } from "@/components/reanimated/fade-slice-card";
+import { FadeSlideCard } from "@/components/reanimated/FadeSlideCard";
 import { ProgressBarTap } from "@/components/reanimated/progress-bar-tap";
 import { View } from "react-native";
 
