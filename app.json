@@ -9,8 +9,7 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.matteobikk90.corsoreactnative"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
@@ -30,14 +29,7 @@
     },
     "plugins": [
       "expo-router",
-      [
-        "expo-notifications",
-        {
-          "icon": "./assets/images/icon.png",
-          "color": "#ffffff",
-          "defaultChannel": "default"
-        }
-      ],
+      "expo-notifications",
       [
         "expo-splash-screen",
         {
