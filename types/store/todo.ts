@@ -5,13 +5,13 @@ export type ToDoState = {
   inputText: string;
   loading: boolean;
   error: string | null;
-  getTodos: () => void;
+  getTodos: () => Promise<string | undefined>;
   setInputText: (text: string) => void;
   toggleTodo: (id: string) => void;
   addTodo: ({ title }: { title: string }) => void;
   deleteTodo: (id: string) => void;
   clearTodos: () => void;
-  loadFromCache: () => void;
+  loadFromCache: () => Promise<void>;
   clearCache: () => void;
   lastSync: string | null;
 };
