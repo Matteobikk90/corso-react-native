@@ -17,7 +17,10 @@ const Tab = createBottomTabNavigator<NativeModulesTabParamList>();
 
 export function NativeModulesTabNavigator({ navigation }: Props) {
   return (
-    <ScreenErrorBoundary onReset={() => navigation.navigate("Home")}>
+    <ScreenErrorBoundary
+      onReset={() =>
+        navigation.reset({ index: 0, routes: [{ name: "Home" }] })
+      }>
       <Tab.Navigator screenOptions={tabsOptions}>
         {tabs.map(({ name, title, component, icon }) => (
           <Tab.Screen

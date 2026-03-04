@@ -30,7 +30,7 @@ export function ExpoNotificationsDevClient() {
 
   const loadToken = useCallback(async () => {
     const savedToken = await storageGet(TOKEN_KEY);
-    console.log(savedToken);
+
     if (savedToken) setToken(savedToken);
   }, [setToken]);
 
