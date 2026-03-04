@@ -7,7 +7,7 @@ import { useEffect, useRef } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useShallow } from "zustand/react/shallow";
 
-export function Geolocation() {
+export default function Geolocation() {
   const subRef = useRef<Location.LocationSubscription | null>(null);
   const { status, coords, setCoords, setStatus } = useStore(
     useShallow(({ status, coords, setCoords, setStatus }) => ({

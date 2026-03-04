@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useShallow } from "zustand/react/shallow";
 
-export function Sensors() {
+export default function Sensors() {
   const accRef = useRef<{ remove: () => void | null }>(null);
   const gyrRef = useRef<{ remove: () => void | null }>(null);
   const { setAccelerometer, setGyroscope, accelerometer, gyroscope } = useStore(

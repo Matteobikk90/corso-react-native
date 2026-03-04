@@ -48,16 +48,25 @@ export function ToDo() {
     init();
   }, [init]);
 
-  const handleToggle = (id: string) => {
-    toggleTodo(id);
-  };
+  const handleToggle = useCallback(
+    (id: string) => {
+      toggleTodo(id);
+    },
+    [toggleTodo]
+  );
 
-  const handleDelete = (id: string) => {
-    deleteTodo(id);
-  };
+  const handleDelete = useCallback(
+    (id: string) => {
+      deleteTodo(id);
+    },
+    [deleteTodo]
+  );
 
-  const renderItem = ({ item }: { item: ToDoType }) => (
-    <TodoRow todo={item} onToggle={handleToggle} onDelete={handleDelete} />
+  const renderItem = useCallback(
+    ({ item }: { item: ToDoType }) => (
+      <TodoRow todo={item} onToggle={handleToggle} onDelete={handleDelete} />
+    ),
+    [handleDelete, handleToggle]
   );
 
   return (

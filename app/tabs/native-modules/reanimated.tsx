@@ -3,7 +3,7 @@ import { FadeSlideCard } from "@/components/reanimated/FadeSlideCard";
 import { ProgressBarTap } from "@/components/reanimated/progress-bar-tap";
 import { View } from "react-native";
 
-export function Reanimated() {
+export default function Reanimated() {
   return (
     <View
       style={{
