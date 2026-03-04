@@ -7,6 +7,7 @@ import {
 } from "@/queries/zustand/todos";
 import { initialTodoStateZustand } from "@/reducers/constants";
 import type { ToDoState as ToDoStateSliceType } from "@/types/store/todo";
+import { logStep } from "@/utils/logs";
 import { clearStorage, storageGet, storageSet } from "@/utils/storage";
 import type { StateCreator } from "zustand";
 
@@ -80,6 +81,8 @@ export const createSliceTodo: StateCreator<ToDoStateSliceType> = (
       }
     } catch (error) {
       console.error("Failed to load cache", error);
+    } finally {
+      set({ loading: false });
     }
   },
 
@@ -92,15 +95,18 @@ export const createSliceTodo: StateCreator<ToDoStateSliceType> = (
   },
 
   addTodo: async ({ title }: { title: string }) => {
+    logStep("TODO", "Start addTodo", { title });
     set({ loading: true });
 
     try {
       const newTodo = await createTodo(title);
 
+      logStep("API", "Todo creato", newTodo);
       set((state) => ({
         todos: [...state.todos, newTodo],
       }));
     } catch (error) {
+      logStep("ERROR", "Errore addTodo", error);
       const message = error instanceof Error ? error.message : "Errore";
       return message;
     } finally {

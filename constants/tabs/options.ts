@@ -1,7 +1,8 @@
+import type { BottomTabNavigationOptions } from "@react-navigation/bottom-tabs";
 import { Easing } from "react-native-reanimated";
 import { colors } from "../colors";
 
-export const tabsOptions = {
+export const tabsOptions: BottomTabNavigationOptions = {
   headerShown: true,
   headerStyle: {
     backgroundColor: colors.headerBg,
