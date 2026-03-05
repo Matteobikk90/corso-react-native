@@ -1,12 +1,13 @@
 import { PermissionBox } from "@/components/permission-box";
+import { colors } from "@/constants/colors";
 import { useStore } from "@/storeZ";
 import { getOnce, startWatch } from "@/utils/geolocation";
 import * as Location from "expo-location";
 import { useEffect, useRef } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useShallow } from "zustand/react/shallow";
 
-export default function Geolocation() {
+export default function GeolocationTab() {
   const subRef = useRef<Location.LocationSubscription | null>(null);
   const { status, coords, setCoords, setStatus } = useStore(
     useShallow(({ status, coords, setCoords, setStatus }) => ({
@@ -78,32 +79,32 @@ export default function Geolocation() {
   );
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     padding: 20,
-//     gap: 20,
-//   },
-//   title: {
-//     fontSize: 20,
-//     fontWeight: "700",
-//     color: "#0F172A",
-//   },
-//   row: { flexDirection: "row", gap: 10 },
-//   card: { backgroundColor: "#fff", padding: 16, borderRadius: 16, gap: 8 },
-//   btn: {
-//     flex: 1,
-//     backgroundColor: colors.primary,
-//     paddingVertical: 12,
-//     borderRadius: 12,
-//   },
-//   btnText: {
-//     color: "#fff",
-//     fontWeight: "700",
-//     textAlign: "center",
-//   },
-//   pressed: {
-//     opacity: 0.7,
-//     transform: [{ scale: 0.9 }],
-//   },
-//   value: { fontWeight: "700", color: colors.headerBg },
-// });
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+    gap: 20,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: "#0F172A",
+  },
+  row: { flexDirection: "row", gap: 10 },
+  card: { backgroundColor: "#fff", padding: 16, borderRadius: 16, gap: 8 },
+  btn: {
+    flex: 1,
+    backgroundColor: colors.primary,
+    paddingVertical: 12,
+    borderRadius: 12,
+  },
+  btnText: {
+    color: "#fff",
+    fontWeight: "700",
+    textAlign: "center",
+  },
+  pressed: {
+    opacity: 0.7,
+    transform: [{ scale: 0.9 }],
+  },
+  value: { fontWeight: "700", color: colors.headerBg },
+});

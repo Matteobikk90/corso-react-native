@@ -1,20 +1,9 @@
 import { Camera } from "@/app/tabs/native-modules/camera";
+import GeolocationTab from "@/app/tabs/native-modules/geolocation";
+import NotificationsWrapper from "@/app/tabs/native-modules/notifications-wrapper";
+import Reanimated from "@/app/tabs/native-modules/reanimated";
+import Sensors from "@/app/tabs/native-modules/sensors";
 import type { TabConfig } from "@/types/navigation";
-import { lazy } from "react";
-
-const NotificationsWrapper = lazy(
-  () => import("../../app/tabs/native-modules/notifications-wrapper")
-);
-
-const Reanimated = lazy(
-  () => import("../../app/tabs/native-modules/reanimated")
-);
-
-const Geolocation = lazy(
-  () => import("../../app/tabs/native-modules/geolocation")
-);
-
-const Sensors = lazy(() => import("../../app/tabs/native-modules/sensors"));
 
 export const tabs: TabConfig[] = [
   {
@@ -39,7 +28,7 @@ export const tabs: TabConfig[] = [
     name: "Geolocation",
     title: "Geolocation",
     icon: "location",
-    component: Geolocation,
+    component: GeolocationTab,
   },
   {
     name: "Camera",
